@@ -1,8 +1,9 @@
 const cors = require('cors');
 const express = require('express');
 const logger = require('./loggers/logger');
+require('dotenv').config();
 const { errorHandler } = require('./middlewares/errorHandler');
-const { familyReunificationRouter } = require('./routers/familyReunification.router');
+const { weatherUpdateRouter } = require("./routers/weatherUpdateRouter.router");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -21,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger);
 
-app.use('/familyReunification', familyReunificationRouter);
+app.use('/weatherUpdate', weatherUpdateRouter);
 
 app.listen(port, () => {
   console.log(`Express server is running on port ${port}`);

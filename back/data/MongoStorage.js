@@ -1,11 +1,4 @@
-/** **************************************************************
- * MongoDB Storage Class
- * - Handles database operations for a specific entity
- * - Inherits from EventEmitter for event handling
- * - Connects to MongoDB using Mongoose
- * - Defines methods for CRUD operations
- * - Implements error handling for database operations
- ************************************************************** */
+
 const { EventEmitter } = require('events');
 const mongoose = require('mongoose');
 const Path = require('path');
@@ -36,10 +29,6 @@ module.exports = class MongoStorage extends EventEmitter {
 
   findById(_id) {
     return this.Model.find({ _id });
-  }
-
-  findByParents(parents) {
-    return this.Model.find({ parents });
   }
 
   create(data) {
