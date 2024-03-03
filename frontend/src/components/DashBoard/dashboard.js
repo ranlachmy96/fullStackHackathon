@@ -27,17 +27,20 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { styled as styled1 } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
+import { LineChart } from '@mui/x-charts/LineChart';
+import BasicLineChart from './BasicLineChart';
+import CustomPaginationActionsTable from './table';
 
 
 const drawerWidth = 240;
 
 const iconsDict = {
-    0: <HomeIcon />,
-    1: <AddIcon />,
-    2: <VisibilityIcon />,
-    3: <UpdateIcon />,
-    4: <DeleteIcon />,
-    };
+  0: <HomeIcon />,
+  1: <AddIcon />,
+  2: <VisibilityIcon />,
+  3: <UpdateIcon />,
+  4: <DeleteIcon />,
+};
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -116,6 +119,21 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+  const chartData = [
+    { x: 'Jan', y: 10 },
+    { x: 'Feb', y: 20 },
+    { x: 'Mar', y: 30 },
+    { x: 'Apr', y: 40 },
+    { x: 'May', y: 50 },
+    { x: 'Jun', y: 60 },
+    { x: 'Jul', y: 70 },
+    { x: 'Aug', y: 80 },
+    { x: 'Sep', y: 90 },
+    { x: 'Oct', y: 100 },
+    { x: 'Nov', y: 110 },
+    { x: 'Dec', y: 120 },
+  ];
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -146,7 +164,7 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Home', 'Creation', 'View', 'Update','Deletion'].map((text, index) => (
+          {['Home', 'Creation', 'View', 'Update', 'Deletion'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -162,7 +180,7 @@ export default function MiniDrawer() {
                     justifyContent: 'center',
                   }}
                 >
-                    {iconsDict[index]}
+                  {iconsDict[index]}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -177,15 +195,10 @@ export default function MiniDrawer() {
           Welcome to Weather Cast
         </Typography>
         <Paper elevation={3} sx={{ padding: 2, margin: 2 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <TextField id="outlined-basic" label="City" variant="outlined" fullWidth />
-                </Grid>
-                <Grid item xs={12}>
-                    <Button variant="contained" fullWidth>Search</Button>
-                </Grid>
-            </Grid>
+          <CustomPaginationActionsTable />
         </Paper>
+
+
 
 
       </Box>
