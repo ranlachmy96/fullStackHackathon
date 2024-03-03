@@ -22,15 +22,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import UpdateIcon from '@mui/icons-material/Update';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { styled as styled1 } from '@mui/material/styles';
-import { createTheme } from '@mui/material/styles';
-import { LineChart } from '@mui/x-charts/LineChart';
-import BasicLineChart from './BasicLineChart';
 import CustomPaginationActionsTable from './table';
-
+import Form from './form';
 
 const drawerWidth = 240;
 
@@ -107,9 +100,35 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+// Define separate components for each page/content
+const HomePage = () => (
+  <Typography paragraph>
+    Welcome to the Home Page
+  </Typography>
+);
+
+const CreationPage = () => (
+  <Typography paragraph>
+    Welcome to the Creation Page
+  </Typography>
+);
+
+const ViewPage = () => (
+  <Typography paragraph>
+    Welcome to the View Page
+  </Typography>
+);
+
+const UpdatePage = () => (
+  <Typography paragraph>
+    Welcome to the Update Page
+  </Typography>
+);
+
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [currentPage, setCurrentPage] = React.useState('home');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -119,20 +138,9 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  const chartData = [
-    { x: 'Jan', y: 10 },
-    { x: 'Feb', y: 20 },
-    { x: 'Mar', y: 30 },
-    { x: 'Apr', y: 40 },
-    { x: 'May', y: 50 },
-    { x: 'Jun', y: 60 },
-    { x: 'Jul', y: 70 },
-    { x: 'Aug', y: 80 },
-    { x: 'Sep', y: 90 },
-    { x: 'Oct', y: 100 },
-    { x: 'Nov', y: 110 },
-    { x: 'Dec', y: 120 },
-  ];
+  const handleItemClick = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -164,7 +172,12 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Home', 'Creation', 'View', 'Update', 'Deletion'].map((text, index) => (
+          {[
+            { text: 'Home', page: 'home' },
+            { text: 'Creation', page: 'creation' },
+            { text: 'View', page: 'view' },
+            { text: 'Update', page: 'update' },
+          ].map(({ text, page }, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -172,6 +185,7 @@ export default function MiniDrawer() {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
+                onClick={() => handleItemClick(page)}
               >
                 <ListItemIcon
                   sx={{
@@ -191,16 +205,16 @@ export default function MiniDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography paragraph>
-          Welcome to Weather Cast
-        </Typography>
-        <Paper elevation={3} sx={{ padding: 2, margin: 2, background: '#1976d2' }}>
+        {currentPage === 'home' && <HomePage />}
+        {currentPage === 'creation' && <CreationPage />}
+        {currentPage === 'view' && <ViewPage />}
+        {currentPage === 'update' && <UpdatePage />}
+        {currentPage === 'home' && <Paper elevation={3} sx={{ padding: 2, margin: 2, background: '#1976d2' }}>
           <CustomPaginationActionsTable />
-        </Paper>
-
-
-
-
+        </Paper>}
+        {currentPage === 'creation' && <Paper elevation={3} sx={{ padding: 2, margin: 2, background: '#fff' }}>
+          <Form />
+        </Paper>}
       </Box>
     </Box>
   );

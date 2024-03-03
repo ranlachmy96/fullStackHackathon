@@ -20,9 +20,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { GetAllWeatherUpdates } from '../../API/WeatherUpdate.api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCloudSunRain, faSun, faCloudSun } from '@fortawesome/free-solid-svg-icons';
 
-function createData(_id, time, temperature, humidity, location) {
-  return { _id, time, temperature, humidity, location };
+
+function createData(_id, time, temperature, humidity, location, mood) {
+  return { _id, time, temperature, humidity, location, mood};
 }
 
 export default function CustomPaginationActionsTable() {
@@ -31,17 +34,25 @@ export default function CustomPaginationActionsTable() {
   const [rows, setRows] = useState([]);
   const [selected, setSelected] = useState([]);
 
+  const statusIcons = {
+    'rainy': <FontAwesomeIcon icon={faCloudSunRain} />,
+    'sunny': <FontAwesomeIcon icon={faSun} />,
+    'cloudy': <FontAwesomeIcon icon={faCloudSun} />,
+  };
+
   useEffect(() => {
     async function fetchData() {
       const allWeathersPromise = GetAllWeatherUpdates();
       if (allWeathersPromise) {
         const allWeathers = await allWeathersPromise;
         const allWeathersData = allWeathers.map(weather => {
-          return createData(weather._id, weather.date, weather.temperature, weather.humidity, weather.location);
+          return createData(weather._id, weather.date, weather.temperature, weather.humidity, weather.location, weather.status);
         });
         if (allWeathersData.length > 0) {
           setRows(allWeathersData);
         }
+        console.log('allWeathers', allWeathers);
+
       }
     }
     fetchData();
@@ -53,7 +64,7 @@ export default function CustomPaginationActionsTable() {
       console.log('deleting', _id);
       // await deleteWeatherUpdate(_id);
     });
-    const newRows = rows.filter(row => !selected.includes(row._id)); 
+    const newRows = rows.filter(row => !selected.includes(row._id));
     setRows(newRows);
     setSelected([]);
   };
@@ -135,6 +146,7 @@ export default function CustomPaginationActionsTable() {
             <TableCell>Temperature</TableCell>
             <TableCell>Humidity</TableCell>
             <TableCell>Location</TableCell>
+            <TableCell>Mood</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -159,6 +171,7 @@ export default function CustomPaginationActionsTable() {
                 <TableCell>{row.temperature}</TableCell>
                 <TableCell>{row.humidity}</TableCell>
                 <TableCell>{row.location}</TableCell>
+                <TableCell>{statusIcons[row.mood]}</TableCell>
               </TableRow>
             );
           })}
