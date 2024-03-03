@@ -1,0 +1,3 @@
+::1 - - [03/Mar/2024:15:44:08 +0000] "POST /weatherUpdate/ HTTP/1.1" 400 1803 "-" "PostmanRuntime/7.36.3"
+::1 - - [03/Mar/2024:15:49:45 +0000] "POST /weatherUpdate/ HTTP/1.1" 200 20 "-" "PostmanRuntime/7.36.3"
+::1 - - [03/Mar/2024:15:52:32 +0000] "GET /weatherUpdate/ HTTP/1.1" 200 162 "-" "PostmanRuntime/7.36.3"
