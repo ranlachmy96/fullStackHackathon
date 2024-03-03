@@ -194,7 +194,7 @@ export default function MiniDrawer() {
         <Typography paragraph>
           Welcome to Weather Cast
         </Typography>
-        <Paper elevation={3} sx={{ padding: 2, margin: 2 }}>
+        <Paper elevation={3} sx={{ padding: 2, margin: 2, background: '#1976d2' }}>
           <CustomPaginationActionsTable />
         </Paper>
 
