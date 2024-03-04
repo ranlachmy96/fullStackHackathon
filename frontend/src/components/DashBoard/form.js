@@ -9,8 +9,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 const Form = () => {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
+        location: '',
+        temperature: '',
+        humidity: '',
+        date: '',
+        time: '',
+        status: '',
     });
 
     const handleChange = (e) => {
@@ -21,6 +25,7 @@ const Form = () => {
     };
 
     const handleSubmit = (e) => {
+        console.log('Form submitted')
         e.preventDefault();
         const jsonFormData = JSON.stringify(formData);
         console.log(jsonFormData);
@@ -37,9 +42,7 @@ const Form = () => {
             autoComplete="off"
             onSubmit={handleSubmit}
         >
-            <TextField id="outlined-basic" label="Name" variant="outlined" onChange={handleChange} type='name' name='name' sx={{width:'100%'}}/>
-            <Divider />
-            <TextField id="outlined-basic" label="Location" variant="outlined" onChange={handleChange} type='text' name='Location' sx={{width:'100%'}}/>
+            <TextField id="outlined-basic" label="Location" variant="outlined" onChange={handleChange} type='text' name='location' sx={{width:'100%'}}/>
             <Divider />
             <TextField id="outlined-basic" label="temperature" variant="outlined" onChange={handleChange} type='number' name='temperature' sx={{width:'100%'}}/>
             <Divider />

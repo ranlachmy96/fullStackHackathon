@@ -22,6 +22,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import UpdateIcon from '@mui/icons-material/Update';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Paper from '@mui/material/Paper';
+import Fade from '@mui/material/Fade';
 import CustomPaginationActionsTable from './table';
 import Form from './form';
 
@@ -209,7 +210,7 @@ export default function MiniDrawer() {
         {currentPage === 'creation' && <CreationPage />}
         {currentPage === 'view' && <ViewPage />}
         {currentPage === 'update' && <UpdatePage />}
-        {currentPage === 'home' && <Paper elevation={3} sx={{ padding: 2, margin: 2, background: '#1976d2' }}>
+        {currentPage === 'home' && <Paper elevation={3} sx={{ padding: 2, margin: 2, background: '#f2f2f2' }}>
           <CustomPaginationActionsTable />
         </Paper>}
         {currentPage === 'creation' && <Paper elevation={3} sx={{ padding: 2, margin: 2, background: '#fff' }}>

@@ -6,7 +6,6 @@ const baseUrl = "https://fullstackhackathon.onrender.com";
 
 export const GetAllWeatherUpdates = async () => {
     const res = await axios.get(baseUrl + "/weatherUpdate", {withCredentials: true})
-    // console.log('res', res.data)
     return res.data;
 };
 
@@ -24,11 +23,9 @@ export const deleteWeatherUpdate = async (_id) =>{
 
 export const getTemperatureByDates = async (startDate, endDate) => {
     try {
-        // Get all weather updates
         const response = await axios.get(`${baseUrl}/weatherUpdate`);
         const allWeatherUpdates = response.data;
 
-        // Filter temperature data based on the specified dates
         const temperatureData = allWeatherUpdates.filter(weatherUpdate => {
             const date = new Date(weatherUpdate.date);
             return date >= new Date(startDate) && date <= new Date(endDate);
