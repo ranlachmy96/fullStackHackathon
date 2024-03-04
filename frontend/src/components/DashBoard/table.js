@@ -19,7 +19,7 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { GetAllWeatherUpdates } from '../../API/WeatherUpdate.api';
+import { GetAllWeatherUpdates, deleteWeatherUpdate } from '../../API/WeatherUpdate.api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSunRain, faSun, faCloudSun } from '@fortawesome/free-solid-svg-icons';
 
@@ -61,8 +61,7 @@ export default function CustomPaginationActionsTable() {
 
   const handleDeleteSelectedRows = () => {
     selected.forEach(async _id => {
-      console.log('deleting', _id);
-      // await deleteWeatherUpdate(_id);
+      await deleteWeatherUpdate(_id);
     });
     const newRows = rows.filter(row => !selected.includes(row._id));
     setRows(newRows);

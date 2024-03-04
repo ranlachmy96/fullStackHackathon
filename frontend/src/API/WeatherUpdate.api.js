@@ -6,7 +6,7 @@ const baseUrl = "https://fullstackhackathon.onrender.com";
 
 export const GetAllWeatherUpdates = async () => {
     const res = await axios.get(baseUrl + "/weatherUpdate", {withCredentials: true})
-    // console.log('res', res.data) 
+    // console.log('res', res.data)
     return res.data;
 };
 
