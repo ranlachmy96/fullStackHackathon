@@ -53,7 +53,7 @@ exports.getWeatherUpdate = async (req, res, next) => {
 
 exports.createWeatherUpdate = async (req, res, next) => {
     try {
-        if (!req.body.name || !req.body.temperature || !req.body.humidity || !req.body.location || !req.body.time) {
+        if (!req.body.temperature || !req.body.humidity || !req.body.location || !req.body.date) {
             throw new BodyNotSent();
         }
         const { body: weatherUpdate } = req;

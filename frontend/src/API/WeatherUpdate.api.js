@@ -22,17 +22,11 @@ export const deleteWeatherUpdate = async (_id) =>{
 };
 
 export const CreateWeatherUpdate = async (formData) => {
-    try{
-        const weatherUpdateCase = {
-            temperature: formData.temperature,
-            humidity: formData.humidity,
-            location: formData.location,
-            date: formData.date,
-            status: formData.status
-        };
-        const promise = await axios.post(`${baseUrl}/weatherUpdate`,weatherUpdateCase)
+    try {
+        const weatherUpdateCase = JSON.parse(formData); // Parse JSON string into an object
+        const promise = await axios.post(`${baseUrl}/weatherUpdate`, weatherUpdateCase);
         console.log(promise);
-    } catch (error){
+    } catch (error) {
         console.log("Error Create weatherUpdate case", error);
     }
 }

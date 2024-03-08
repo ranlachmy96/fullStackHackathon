@@ -24,10 +24,11 @@ const Form = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const jsonFormData = JSON.stringify(formData);
-        CreateWeatherUpdate(jsonFormData)
+        const jsonFormData = JSON.stringify(formData)
+        const response = await CreateWeatherUpdate(jsonFormData);
+        console.log("this is my response: ",response);
 
     };
 
