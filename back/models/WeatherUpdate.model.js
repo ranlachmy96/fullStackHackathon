@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const weatherUpdateSchema = new Schema({
     _id: { type: Number },
-    name: { type: String, required: true },
+    name: { type: String },
     temperature: { type: Number, required: true },
     humidity: { type: Number, required: true },
     location: { type: String, required: true },

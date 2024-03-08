@@ -17,9 +17,25 @@ export const deleteWeatherUpdate = async (_id) =>{
     try{
         return await axios.delete(`${baseUrl}/weatherUpdate/${_id}`);
     } catch (error){
-        console.log("Error deleting reunification case", error);
+        console.log("Error deleting weatherUpdate case", error);
     }
 };
+
+export const CreateWeatherUpdate = async (formData) => {
+    try{
+        const weatherUpdateCase = {
+            temperature: formData.temperature,
+            humidity: formData.humidity,
+            location: formData.location,
+            date: formData.date,
+            status: formData.status
+        };
+        const promise = await axios.post(`${baseUrl}/weatherUpdate`,weatherUpdateCase)
+        console.log(promise);
+    } catch (error){
+        console.log("Error Create weatherUpdate case", error);
+    }
+}
 
 export const getTemperatureByDates = async (startDate, endDate) => {
     try {

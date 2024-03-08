@@ -6,6 +6,7 @@ import Divider from '@mui/material/Divider';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import {CreateWeatherUpdate} from "../../API/WeatherUpdate.api";
 
 const Form = () => {
     const [formData, setFormData] = useState({
@@ -13,7 +14,6 @@ const Form = () => {
         temperature: '',
         humidity: '',
         date: '',
-        time: '',
         status: '',
     });
 
@@ -25,11 +25,10 @@ const Form = () => {
     };
 
     const handleSubmit = (e) => {
-        console.log('Form submitted')
         e.preventDefault();
         const jsonFormData = JSON.stringify(formData);
-        console.log(jsonFormData);
-        // Add your form submission logic here
+        CreateWeatherUpdate(jsonFormData)
+
     };
 
     return (
@@ -48,9 +47,7 @@ const Form = () => {
             <Divider />
             <TextField id="outlined-basic" label="humidity" variant="outlined" onChange={handleChange} type='number' name='humidity' sx={{width:'100%'}}/>
             <Divider />
-            <TextField id="outlined-basic"  variant="outlined" onChange={handleChange} type='date' name='date'/>
-            <Divider />
-            <TextField id="outlined-basic"  variant="outlined" onChange={handleChange} type='time' name='time' />
+            <TextField id="outlined-basic"  variant="outlined" onChange={handleChange} type='datetime-local' name='date'/>
             <Divider />
             <RadioGroup aria-label="status" name="status" value={formData.status} onChange={handleChange}>
                 <FormControlLabel value="sunny" control={<Radio />} label="Sunny" sx={{ marginLeft: '2px' }}/>
@@ -58,7 +55,7 @@ const Form = () => {
                 <FormControlLabel value="cloudy" control={<Radio />} label="Cloudy" sx={{ marginLeft: '2px' }} />
             </RadioGroup>
             <br />
-            <Button variant="contained" type='submit' sx={{marginLeft: '8px'}}>Submit</Button>
+            <Button variant="contained" onClick={handleSubmit} type='submit' sx={{marginLeft: '8px'}}>Submit</Button>
         </Box>
     );
 };
