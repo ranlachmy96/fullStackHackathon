@@ -157,7 +157,7 @@ export default function CustomPaginationActionsTable() {
                   }}
                 />
               </TableCell>
-              <TableCell>Time</TableCell>
+              <TableCell>Date</TableCell>
               <TableCell>Temperature</TableCell>
               <TableCell>Humidity</TableCell>
               <TableCell>Location</TableCell>

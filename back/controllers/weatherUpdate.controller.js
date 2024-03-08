@@ -56,7 +56,6 @@ exports.createWeatherUpdate = async (req, res, next) => {
         if (!req.body.name || !req.body.temperature || !req.body.humidity || !req.body.location || !req.body.time) {
             throw new BodyNotSent();
         }
-
         const { body: weatherUpdate } = req;
         // eslint-disable-next-line no-underscore-dangle
         weatherUpdate._id = await generateId();
