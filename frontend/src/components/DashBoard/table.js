@@ -53,7 +53,7 @@ export default function CustomPaginationActionsTable() {
   };
 
   const fetchData = async () =>  {
-    setLoading(true); // Set loading to true when fetching data
+    setLoading(true);
     try {
       const allWeathersPromise = GetAllWeatherUpdates();
       if (allWeathersPromise) {
@@ -74,7 +74,9 @@ export default function CustomPaginationActionsTable() {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line no-underscore-dangle
     fetchData();
+
   }, []);
 
   const formatDate = (dateTimeString) => {
@@ -97,7 +99,6 @@ export default function CustomPaginationActionsTable() {
   };
 
   const handleEditSelectedRows = () => {
-    // Find the first selected row for editing
     const selectedRow = rows.find(row => selected.includes(row._id));
     if (selectedRow) {
       setEditedRowData(selectedRow);
@@ -114,10 +115,10 @@ export default function CustomPaginationActionsTable() {
       await UpdateWeather(editedRowData);
       console.log('Row updated successfully:', editedRowData);
       setOpenEditDialog(false);
+      // eslint-disable-next-line no-underscore-dangle
       fetchData();
     } catch (error) {
       console.error('Error updating row:', error);
-      // Handle error appropriately
     }
   };
 
