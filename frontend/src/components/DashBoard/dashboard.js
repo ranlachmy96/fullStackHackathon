@@ -22,7 +22,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import UpdateIcon from '@mui/icons-material/Update';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Paper from '@mui/material/Paper';
-import Fade from '@mui/material/Fade';
+import EditIcon from '@mui/icons-material/Edit';
 import CustomPaginationActionsTable from './table';
 import Form from './form';
 
@@ -31,9 +31,8 @@ const drawerWidth = 240;
 const iconsDict = {
   0: <HomeIcon />,
   1: <AddIcon />,
-  2: <VisibilityIcon />,
-  3: <UpdateIcon />,
-  4: <DeleteIcon />,
+  2: <EditIcon />,
+  3: <DeleteIcon />,
 };
 
 const openedMixin = (theme) => ({
@@ -114,13 +113,9 @@ const CreationPage = () => (
   </Typography>
 );
 
-const ViewPage = () => (
-  <Typography paragraph>
-    Welcome to the View Page
-  </Typography>
-);
 
-const UpdatePage = () => (
+
+const EditPage = () => (
   <Typography paragraph>
     Welcome to the Update Page
   </Typography>
@@ -176,8 +171,7 @@ export default function MiniDrawer() {
           {[
             { text: 'Home', page: 'home' },
             { text: 'Creation', page: 'creation' },
-            { text: 'View', page: 'view' },
-            { text: 'Update', page: 'update' },
+            { text: 'Edit', page: 'edit' },
           ].map(({ text, page }, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
@@ -208,8 +202,7 @@ export default function MiniDrawer() {
         <DrawerHeader />
         {currentPage === 'home' && <HomePage />}
         {currentPage === 'creation' && <CreationPage />}
-        {currentPage === 'view' && <ViewPage />}
-        {currentPage === 'update' && <UpdatePage />}
+        {currentPage === 'edit' && <EditPage />}
         {currentPage === 'home' && <Paper elevation={3} sx={{ padding: 2, margin: 2, background: '#f2f2f2' }}>
           <CustomPaginationActionsTable />
         </Paper>}

@@ -25,12 +25,20 @@ export const CreateWeatherUpdate = async (formData) => {
     try {
         const weatherUpdateCase = JSON.parse(formData); // Parse JSON string into an object
         const promise = await axios.post(`${baseUrl}/weatherUpdate`, weatherUpdateCase);
-        console.log(promise);
+        return promise.data;
     } catch (error) {
         console.log("Error Create weatherUpdate case", error);
     }
 }
-
+export const UpdateWeather= async (weather) => {
+    try {
+        const response = await axios.put(
+            `${baseUrl}/weatherUpdate/${weather._id}`, weather);
+        return response.data;
+    } catch (error) {
+        console.error("Error updating reunification case:", error);
+    }
+};
 export const getTemperatureByDates = async (startDate, endDate) => {
     try {
         const response = await axios.get(`${baseUrl}/weatherUpdate`);
