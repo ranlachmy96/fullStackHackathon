@@ -20,7 +20,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Paper from '@mui/material/Paper';
-import EditIcon from '@mui/icons-material/Edit';
 import CustomPaginationActionsTable from './table';
 import Form from './form';
 
@@ -29,8 +28,7 @@ const drawerWidth = 240;
 const iconsDict = {
   0: <HomeIcon />,
   1: <AddIcon />,
-  2: <EditIcon />,
-  3: <DeleteIcon />,
+  2: <DeleteIcon />,
 };
 
 const openedMixin = (theme) => ({
@@ -110,14 +108,6 @@ const CreationPage = () => (
   </Typography>
 );
 
-
-
-const EditPage = () => (
-  <Typography paragraph>
-    Welcome to the Update Page
-  </Typography>
-);
-
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -168,7 +158,6 @@ export default function MiniDrawer() {
           {[
             { text: 'Home', page: 'home' },
             { text: 'Creation', page: 'creation' },
-            { text: 'Edit', page: 'edit' },
           ].map(({ text, page }, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
@@ -199,7 +188,6 @@ export default function MiniDrawer() {
         <DrawerHeader />
         {currentPage === 'home' && <HomePage />}
         {currentPage === 'creation' && <CreationPage />}
-        {currentPage === 'edit' && <EditPage />}
         {currentPage === 'home' && <Paper elevation={3} sx={{ padding: 2, margin: 2, background: '#f2f2f2' }}>
           <CustomPaginationActionsTable />
         </Paper>}
